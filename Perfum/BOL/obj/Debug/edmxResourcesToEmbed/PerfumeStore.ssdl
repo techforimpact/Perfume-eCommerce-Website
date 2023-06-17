@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PerfumeStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_Admins">
+    <Key>
+      <PropertyRef Name="adminsId" />
+    </Key>
+    <Property Name="adminsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="pass" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="permission" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PerfumeStore.dbo.tbl_Cart' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_Cart">
+    <Key>
+      <PropertyRef Name="cartId" />
+    </Key>
+    <Property Name="cartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customersId" Type="int" />
+    <Property Name="productsId" Type="int" />
+    <Property Name="quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Customers">
+    <Key>
+      <PropertyRef Name="customersId" />
+    </Key>
+    <Property Name="customersId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="lastName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="pass" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="phoneNumber" Type="varchar" MaxLength="15" />
+    <Property Name="customerAddress" Type="varchar" MaxLength="255" />
+    <Property Name="city" Type="varchar" MaxLength="64" />
+    <Property Name="zip" Type="int" />
+    <Property Name="country" Type="varchar" MaxLength="64" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PerfumeStore.dbo.tbl_Orders' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_Orders">
+    <Key>
+      <PropertyRef Name="ordersId" />
+      <PropertyRef Name="usersId" />
+      <PropertyRef Name="productsId" />
+      <PropertyRef Name="quantity" />
+      <PropertyRef Name="total" />
+    </Key>
+    <Property Name="ordersId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="usersId" Type="int" Nullable="false" />
+    <Property Name="productsId" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="total" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="orderDate" Type="date" />
+  </EntityType>
+  <EntityType Name="tbl_Products">
+    <Key>
+      <PropertyRef Name="productsId" />
+    </Key>
+    <Property Name="productsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+    <Property Name="productDes" Type="varchar" MaxLength="2000" />
+    <Property Name="stock" Type="int" />
+    <Property Name="category" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="productImage" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK__tbl_Cart__custom__300424B4">
+    <End Role="tbl_Customers" Type="Self.tbl_Customers" Multiplicity="0..1" />
+    <End Role="tbl_Cart" Type="Self.tbl_Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Customers">
+        <PropertyRef Name="customersId" />
+      </Principal>
+      <Dependent Role="tbl_Cart">
+        <PropertyRef Name="customersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Cart__produc__30F848ED">
+    <End Role="tbl_Products" Type="Self.tbl_Products" Multiplicity="0..1" />
+    <End Role="tbl_Cart" Type="Self.tbl_Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Products">
+        <PropertyRef Name="productsId" />
+      </Principal>
+      <Dependent Role="tbl_Cart">
+        <PropertyRef Name="productsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Order__produ__2C3393D0">
+    <End Role="tbl_Products" Type="Self.tbl_Products" Multiplicity="1" />
+    <End Role="tbl_Orders" Type="Self.tbl_Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Products">
+        <PropertyRef Name="productsId" />
+      </Principal>
+      <Dependent Role="tbl_Orders">
+        <PropertyRef Name="productsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Order__users__2B3F6F97">
+    <End Role="tbl_Customers" Type="Self.tbl_Customers" Multiplicity="1" />
+    <End Role="tbl_Orders" Type="Self.tbl_Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Customers">
+        <PropertyRef Name="customersId" />
+      </Principal>
+      <Dependent Role="tbl_Orders">
+        <PropertyRef Name="usersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PerfumeStoreModelStoreContainer">
+    <EntitySet Name="tbl_Admins" EntityType="Self.tbl_Admins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Customers" EntityType="Self.tbl_Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Products" EntityType="Self.tbl_Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Cart" EntityType="Self.tbl_Cart" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbl_Cart].[cartId] AS [cartId], 
+    [tbl_Cart].[customersId] AS [customersId], 
+    [tbl_Cart].[productsId] AS [productsId], 
+    [tbl_Cart].[quantity] AS [quantity]
+    FROM [dbo].[tbl_Cart] AS [tbl_Cart]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_Orders" EntityType="Self.tbl_Orders" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbl_Orders].[ordersId] AS [ordersId], 
+    [tbl_Orders].[usersId] AS [usersId], 
+    [tbl_Orders].[productsId] AS [productsId], 
+    [tbl_Orders].[quantity] AS [quantity], 
+    [tbl_Orders].[total] AS [total], 
+    [tbl_Orders].[orderDate] AS [orderDate]
+    FROM [dbo].[tbl_Orders] AS [tbl_Orders]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__tbl_Cart__custom__300424B4" Association="Self.FK__tbl_Cart__custom__300424B4">
+      <End Role="tbl_Customers" EntitySet="tbl_Customers" />
+      <End Role="tbl_Cart" EntitySet="tbl_Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Cart__produc__30F848ED" Association="Self.FK__tbl_Cart__produc__30F848ED">
+      <End Role="tbl_Products" EntitySet="tbl_Products" />
+      <End Role="tbl_Cart" EntitySet="tbl_Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Order__produ__2C3393D0" Association="Self.FK__tbl_Order__produ__2C3393D0">
+      <End Role="tbl_Products" EntitySet="tbl_Products" />
+      <End Role="tbl_Orders" EntitySet="tbl_Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Order__users__2B3F6F97" Association="Self.FK__tbl_Order__users__2B3F6F97">
+      <End Role="tbl_Customers" EntitySet="tbl_Customers" />
+      <End Role="tbl_Orders" EntitySet="tbl_Orders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

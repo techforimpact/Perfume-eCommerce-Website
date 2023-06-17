@@ -1,0 +1,10 @@
+You need to change the connection string from web.config file
+-BOL
+-Perfume
+
+
+
+
+ALWAYS USE THIS EXACT NAME FOR DATABASE AND ADDING THE DATABASE ENTITY IN THE PROJECT
+
+"PerfumeStore"

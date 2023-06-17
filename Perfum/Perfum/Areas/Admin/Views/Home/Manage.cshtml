@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BOL.tbl_Admins>
+
+@{
+    ViewBag.Title = "Manage";
+}
+
+<br />
+<br />
+<h2>Manage Admins</h2>
+
+<br />
+<p>
+    @Html.ActionLink("Create New Admin", "CreateAdmin")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.permission)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pass)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.permission)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.adminsId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.adminsId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.adminsId })
+        </td>
+    </tr>
+}
+
+</table>

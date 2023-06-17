@@ -1,0 +1,12 @@
+F:\Side Work\ASP.NET\Perfum\BOL\bin\Debug\BOL.dll.config
+F:\Side Work\ASP.NET\Perfum\BOL\bin\Debug\BOL.dll
+F:\Side Work\ASP.NET\Perfum\BOL\bin\Debug\BOL.pdb
+F:\Side Work\ASP.NET\Perfum\BOL\bin\Debug\EntityFramework.dll
+F:\Side Work\ASP.NET\Perfum\BOL\bin\Debug\EntityFramework.SqlServer.dll
+F:\Side Work\ASP.NET\Perfum\BOL\bin\Debug\EntityFramework.xml
+F:\Side Work\ASP.NET\Perfum\BOL\bin\Debug\EntityFramework.SqlServer.xml
+F:\Side Work\ASP.NET\Perfum\BOL\obj\Debug\BOL.csproj.AssemblyReference.cache
+F:\Side Work\ASP.NET\Perfum\BOL\obj\Debug\BOL.csproj.CoreCompileInputs.cache
+F:\Side Work\ASP.NET\Perfum\BOL\obj\Debug\BOL.csproj.CopyComplete
+F:\Side Work\ASP.NET\Perfum\BOL\obj\Debug\BOL.dll
+F:\Side Work\ASP.NET\Perfum\BOL\obj\Debug\BOL.pdb

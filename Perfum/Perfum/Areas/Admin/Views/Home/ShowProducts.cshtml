@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BOL.tbl_Products>
+
+@{
+    ViewBag.Title = "ShowProducts";
+}
+
+<br />
+<br />
+<h2>ShowProducts</h2>
+
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.productName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productDes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productImage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.productName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.productDes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.productImage)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.productsId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.productsId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.productsId })
+        </td>
+    </tr>
+}
+
+</table>
